@@ -78,7 +78,7 @@ touch .env
 4. Direct to ./config/config.json, and modify "username" & "password" in "development" section to map your local Sequelize setting.
 5. Setup local database at SQL Workbench
 ```
-drop database if exists forum;
+drop database if exists ac_twitter_workspace;
 create database ac_twitter_workspace;
 ```
 6. Create data in locl database
@@ -91,14 +91,6 @@ npx sequelize db:seed:all
 7. Run the project
 ```
 npm run dev
-```
-- For windows system, please direct to ./package.json and change the *script* setting as below.
-```
-"scripts": {
-  "start": "NODE_ENV=development node app.js",
-  "dev": "NODE_ENV=nodemon app.js",
-  "test": "mocha test --exit --recursive --timeout 5000"
-},
 ```
 
 ## Skills & Tools
