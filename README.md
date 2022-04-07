@@ -49,6 +49,14 @@ A simple Twitter API project built with Node.js, Express.js and MySQL, and colla
 | GET FULL TWEET LIST            | `GET` /admin/tweets              | 
 | DELETE SPECIFIC TWEET          | `DLETE` /admin/tweets/:id        | 
 
+
+## Screenshots
+###### FRONT-STAGE
+![Front stage](https://github.com/wentingliuu/twitter-api-2020/blob/master/twitter-front-stage.gif)
+
+###### BACK-STAGE
+![Back stage](https://github.com/wentingliuu/twitter-api-2020/blob/master/twitter-back-stage.gif)
+
 ## Installation and Execution
 1. Clone the repository to your computer
 ```
