@@ -1,89 +1,121 @@
-# Alphitter api server
----
-## 這是什麼？
-這是Alpha Camp的團體專案：Simple Twitter，模擬Twitter的簡化版Twitter。
-是存放作為前端串接資料、進行database操作的路由的repository。<br>
-Simple Twitter連結：https://sh330035.github.io/twitter-frontend/
+# Simple Twitter API
 
----
-## 有哪些功能？
-* 管理者方面
-  1. 登入
-  2. 瀏覽使用者清單
-  3. 刪除使用者推文
-* 使用者方面
-  1. 註冊與登入
-  2. 瀏覽使用者資訊
-     (1) 瀏覽目前使用者的資訊
-     (2) 瀏覽其他使用者的推文、回覆、喜歡與追蹤等清單
-     (3) 瀏覽前十名最多人追蹤的清單
-  3. 使者者互動
-     (1) 編輯目前使用者的資訊
-     (2) 對推文進行發布、回覆與喜歡的動作
-     (3) 對其他使用者進行追蹤與小鈴鐺的開啟和取消的行為
----
-## 具有哪些內容？
-* 資料庫
-  * config/config.js：設定對應本機SQL的username, password與database名稱
-  * migrations：建立各個Model的Table時，預設之變數與資料型態
-  * models：各個Model的變數與資料型態，及其與其他Model的關聯性
-* 路由
-  * config/passport.js：登入的驗證功能之設定
-  * controllers/api：回傳來自services送來的資料或狀態
-  * route/api.js：路由列表
-  * services：每條路由所對應之database的CRUD
-* 套件與其他
-  * package.json：本repository所使用的套件和執行設定
+A simple Twitter API project built with Node.js, Express.js and MySQL, and collaborated with Front-end partners, [Dolly](https://github.com/DollyChen-CYC) & [David](https://github.com/sh330035), and Back-end partner, [Ming](https://github.com/jadokao). Featuring like Twitter, users could post/reply/like posts, follow/unfollow others, edit their own profile including profile phote and cover photo.
 
----
-## 使用技術
-1. Node.js：讓JavaScript在伺服器端運行的執行環境
-2. Express.js：基於Node.js來開發Web App的框架
-3. Passport.js：採用JSON Web Token作為登入驗證的middleware套件
-4. MySQL：用來儲存資料的關聯式資料庫
-5. Heroku：部署Web App的雲端平台
----
-## 怎麼使用？
-1. 下載repository
-    <pre><code>git clone -b master git@github.com:jadokao/twitter-api-2020.git</code></pre>
-2. 進入資料夾
-    <pre><code>cd twitter-api-2020</code></pre>
-4. 進行套件下載
-    <pre><code>npm install</code></pre>
-4. 建立檔案：*.env*，並參考檔案：*.env.example*，放入環境變數
-5. 至資料夾*config*裡的*config.json*，修改環境*development*內的*username*與*password*和本機的SQL資訊相符
-6. 到SQL Workbench，輸入指令來建立database
-    <pre><code>create database ac_twitter_workspace;</code></pre>
-7. 建立Model的Table至database
-    <pre><code>npx sequelize db:migrate</code></pre>
-8. 載入種子檔
-    <pre><code>npx sequelize db:seed:all</code></pre>
-9. 輸入指令，運行server
-    <pre><code>npm run dev</code></pre>
-##### 注意事項
-* 如果是使用windows系統，需要到檔案：*package.json*，找到*scripts*下的*dev*，把內容改成：
-    <pre><code>nodemon app.js</code></pre>
----
-## 測試用帳號
-* 前台測試帳號
-  * account：user1
-  * email：user1@example.com
-  * password：12345678
-* 後台測試帳號
-  * account：root
-  * email：root@example.com
-  * password：12345678
----
-## 相關連結
-* 前端
-  * github：https://github.com/sh330035/twitter-frontend
-  * 網站入口：https://sh330035.github.io/twitter-frontend/
-* 後端
-  * github：https://github.com/jadokao/twitter-api-2020
-  * Heroku：https://alphitter-api-server.herokuapp.com/api/
----
-## 團隊成員
-* [Dolly Chen](https://github.com/DollyChen-CYC)
+🌟 Mainly responsible for *Back-end*, such as design & create database using *MySQL*, develop *RESTful API* for front-end partenr to fetch data, depoly API to cloud application platform *HEROKU*.
+
+🌟 Project introduction written on **[Medium](https://wentingliuu.medium.com/alpha-camp-%E7%95%A2%E6%A5%AD%E5%B0%88%E6%A1%88-twitter-%E5%9C%98%E9%AB%94%E5%8D%94%E4%BD%9C-b0011b05b7f1)** (in Chinese).
+
+🌟 **[Click Here](https://sh330035.github.io/twitter-frontend/)** and use the following dummy data to have a try.
+
+| Account | Password | Role                         |
+| --------| ---------| ---------------------------- |
+| user1   | 12345678 | User (access to front-stage) |
+| root    | 12345678 | Admin (access to back-stage) |
+
+## Features
+### Users [(@front-stage)](https://sh330035.github.io/twitter-frontend/)
+| Feature                        | API ROUTE                         |
+| ------------------------------ | --------------------------------- |
+| REGISTER                       | `POST` /users                     | 
+| LOGIN                          | `POST` /signin                    | 
+| LOGOUT                         | -                                 | 
+| GET TOP 10 USERS               | `GET` /users/top                  | 
+| USER INFO (Tweet List)         | `GET` /users/:id/tweets           | 
+| USER INFO (Reply List)         | `GET` /users/:id/replied_tweets   | 
+| USER INFO (Like List)          | `GET` /users/:id/likes            | 
+| USER INFO (Following List)     | `GET` /users/:id/followings       |  
+| USER INFO (Follower List)      | `GET` /users/:id/followers        | 
+| GET USER PROFILE               | `GET` /users/:id                  | 
+| EDIT USER PROFILE              | `PUT` /users/:id                  | 
+| EDIT USER SETTING              | `PUT` /users/:id/setting          | 
+| FOLLOW OTHERS                  | `POST` /followships               | 
+| UNFOLLOW OTHERS                | `DELETE` /followships/:followingId| 
+| CREAT A POST                   | `POST` /tweets                    | 
+| READ ALL POSTS                 | `GET` /tweets                     | 
+| READ A POST                    | `GET` /tweets/:tweet_id           | 
+| READ REPLIES OF A POST         | `GET` /tweets/:tweet_id/replies   | 
+| CREAT NEW REPLY TO A POST      | `POST` /tweets/:tweet_id/replies  | 
+| LIKE A POST                    | `POST` /tweets/:tweet_id/like     | 
+| UNLIKE A POST                  | `POST` /tweets/:tweet_id/unlike   | 
+
+
+### Admins [(@back-stage)](https://sh330035.github.io/twitter-frontend/#/admin/login)
+| Feature                        | API ROUTE                        |
+| ------------------------------ | -------------------------------- |
+| LOGIN                          | `POST` /admin/signin             | 
+| LOGOUT                         | -                                | 
+| GET FULL USER LIST             | `GET` /admin/users               | 
+| GET FULL TWEET LIST            | `GET` /admin/tweets              | 
+| DELETE SPECIFIC TWEET          | `DLETE` /admin/tweets/:id        | 
+
+## Installation and Execution
+1. Clone the repository to your computer
+```
+git clone -b master git@github.com:jadokao/twitter-api-2020.git
+```
+2. Init: install the npm packages
+```
+cd twitter-api-2020
+```
+```
+npm install
+```
+3. Create .env file and store API Key in the file
+```
+touch .env
+```
+- Please see [.env.example](https://github.com/wentingliuu/twitter-api-2020/blob/master/.env.example) for reference.
+- Please get your own IMGUR_CLIENT_ID from [Imgur](https://api.imgur.com/oauth2/addclient).
+4. Direct to ./config/config.json, and modify "username" & "password" in "development" section to map your local Sequelize setting.
+5. Setup local database at SQL Workbench
+```
+drop database if exists forum;
+create database ac_twitter_workspace;
+```
+6. Create data in locl database
+```
+npx sequelize db:migrate
+```
+```
+npx sequelize db:seed:all
+```
+7. Run the project
+```
+npm run dev
+```
+- For windows system, please direct to ./package.json and change the *script* setting as below.
+```
+"scripts": {
+  "start": "NODE_ENV=development node app.js",
+  "dev": "NODE_ENV=nodemon app.js",
+  "test": "mocha test --exit --recursive --timeout 5000"
+},
+```
+
+## Skills & Tools
+*  [Node.js](https://nodejs.org/en/) & [npm](https://www.npmjs.com/) - JavaScript runtime environment
+*  [Express.js](https://expressjs.com/) - web application framework
+*  [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) - template engine
+*  [MySQL](https://www.mongodb.com/) - relational database management system
+*  [Sequelize](https://mongoosejs.com/) - a Node.js ORM tool for MySQL
+*  [passport-jwt](http://www.passportjs.org/) - authentication middleware for Node.js
+*  [multer](https://www.npmjs.com/package/multer) - middleware for uploading files
+*  [imgur](https://www.npmjs.com/package/imgur-node-api) - middleware for uploading images to imgur
+*  [Git](https://git-scm.com/) control - to collaborate with other teammates.
+
+
+## LINKS
+###### FRONT-END
+* github：https://github.com/sh330035/twitter-frontend
+* website：https://sh330035.github.io/twitter-frontend/
+
+###### BACK-END
+* github：https://github.com/jadokao/twitter-api-2020
+* Heroku：https://alphitter-api-server.herokuapp.com/api/
+
+## Authurs
+* [Dolly](https://github.com/DollyChen-CYC)
 * [David](https://github.com/sh330035)
 * [WenTing](https://github.com/wentingliuu)
 * [Ming](https://github.com/jadokao)
