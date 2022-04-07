@@ -2,7 +2,7 @@
 
 A simple Twitter API project built with Node.js, Express.js and MySQL, and collaborated with Front-end partners, [Dolly](https://github.com/DollyChen-CYC) & [David](https://github.com/sh330035), and Back-end partner, [Ming](https://github.com/jadokao). Featuring like Twitter, users could post/reply/like posts, follow/unfollow others, edit their own profile including profile phote and cover photo.
 
-🌟 Mainly responsible for *Back-end*, such as design & create database using *MySQL*, develop *RESTful API* for front-end partenr to fetch data, depoly API to cloud application platform *HEROKU*.
+🌟 Mainly responsible for **Back-end**, such as design & create database using *MySQL*, develop *RESTful API* for front-end partenr to fetch data, depoly API to cloud application platform *HEROKU*.
 
 🌟 Project introduction written on **[Medium](https://wentingliuu.medium.com/alpha-camp-%E7%95%A2%E6%A5%AD%E5%B0%88%E6%A1%88-twitter-%E5%9C%98%E9%AB%94%E5%8D%94%E4%BD%9C-b0011b05b7f1)** (in Chinese).
 
